@@ -7,8 +7,8 @@ function Product() {
     return (
         <div>
             <FilterForm />
-            <ProductsList />
-            <ProductDetails/>
+         <ProductsList />
+            {/* <ProductDetails/>  */}
         </div>
     )
 }

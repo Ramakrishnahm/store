@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 function Filterform() {
-  const [categories, setCategories] = useState(["all", "Tables", "Chairs", "Kids", "Sofas", "Beds"]);
-  const [company, setCompany] = useState(["all", "Modenza", "Luxora", "Artifex", "Comfora", "Homestead"]);
-  const [sort, setSort] = useState(["all", "a-z", "z-a", "high", "low", "medium"]);
+  const [categories] = useState(["all", "Tables", "Chairs", "Kids", "Sofas", "Beds"]);
+  const [company] = useState(["all", "Modenza", "Luxora", "Artifex", "Comfora", "Homestead"]);
+  const [sort] = useState(["all", "a-z", "z-a", "high", "low", "medium"]);
   const [form, setForm] = useState({ searchproduct: "", categories: "", company: "", sortby: "", range: "", freeshipping: false })
 
  
   const handleChange = (ev) => {
     const { name, type, value, checked } = ev && ev.target;
-    setForm((prev) => ({ ...prev, [name]: (type == "checkbox" || type == "radio") ? checked : value }));
+    setForm((prev) => ({ ...prev, [name]: (type === "checkbox" || type === "radio") ? checked : value }));
   };
 
   function handleSubmit(event) {

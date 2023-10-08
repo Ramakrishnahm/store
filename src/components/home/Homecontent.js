@@ -1,7 +1,7 @@
 import FeatureProducts from "./FeatureProducts";
-import Products from "./FeatureProducts";
 
-function ContentImage() {
+
+function Image() {
   return (
     <div className="contentimages">
       <div>
@@ -70,7 +70,7 @@ function Content() {
 function Home() {
   return (
     <>
-      <ContentImage />
+      <Image />
       <Content />
       <FeatureProducts />
     </>

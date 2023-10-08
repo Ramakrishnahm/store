@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 function ProductsList() {
   const [data, setData] = useState([]);
+  
+
 
   useEffect(() => {
     axios
@@ -16,12 +19,8 @@ function ProductsList() {
       <div>
         <h3>{data.length} products</h3>
         <div>
-          <button onClick="listView()">
-            <i class="fa fa-bars"></i> List
-          </button>
-          <button onClick="gridView()">
-            <i class="fa fa-th-large"></i> Grid
-          </button>
+          <button onClick="listView()">List</button>
+          <button onClick="gridView()">Grid</button>
         </div>
         <hr />
       </div>

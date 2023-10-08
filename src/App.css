@@ -88,9 +88,9 @@ li {
   height: 2rem;
 }
 
-.pages:hover {
-  background-color: orangered;
-}
+/* .pages:hover {
+  background-color:none;
+} */
 
 .contentimages {
   border: 1px solid;

@@ -1,16 +1,9 @@
-
 import { BsFillMoonFill } from "react-icons/bs";
 import { BsFillCartDashFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
-
-
 function Navbar() {
-  const activeclass = ({ isActive }) => {
-    return isActive ? "active" : "";
-  }
   return (
-
     <div className="nav">
       <a id="navicon" href="#">
         C
@@ -18,25 +11,16 @@ function Navbar() {
 
       <div className="navbar ">
         <div className="pages">
-          <NavLink className={"activeclass"} to="/home">
-            Home
-          </NavLink>
-
+          <NavLink to="/home">Home</NavLink>
         </div>
         <div className="pages">
-          <NavLink className={"activeclass"} to="/about">
-            About
-          </NavLink>
-
+          <NavLink to="/about">About</NavLink>
         </div>
         <div className="pages">
-          <NavLink className={"activeclass"} to="/products" >
-            Products
-          </NavLink>
+          <NavLink to="/products">Products</NavLink>
         </div>
         <div className="pages">
-          <NavLink className={"activeclass"} to="/cart" >Cart
-          </NavLink>
+          <NavLink to="/cart">Cart</NavLink>
         </div>
       </div>
       <div className="cart">

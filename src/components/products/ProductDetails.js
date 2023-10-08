@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { CartContext } from "../cart/CartContext";
 const productObj = {
-  options: [1, 2, 3, 4, 5]
-}
+  options: [1, 2, 3, 4, 5],
+};
 function ProductDetails() {
   const [productDetails, setProductDetails] = useState(null);
+  const [option] = useState(productObj.options);
+
+  // const {dispatch} = useContext(CartContext)
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`https://strapi-store-server.onrender.com/api/products/${id}`)
-      .then((res) => setProductDetails(res.data.data))
-  }, [id])
-  const [options] = useState(productObj.options);
+    fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
+      .then((res) => res.json())
+      .then((res) => setProductDetails(res.data.data));
+  }, [id]);
+
   return (
     <>
+   { JSON.stringify(productDetails)}
       {productDetails &&
         <div className="productDetails">
           <img
@@ -35,16 +41,21 @@ function ProductDetails() {
             <div>
               <label>Amount</label> <br />
               <select id="company">
-                {options.map(value => <option value={value}>{value}</option>)}
+                {option.map(value => <option value={value} key ={value}>{value}</option>)}
               </select>
             </div>
             <div >
-              <button>ADD TO BAG</button>
+              <button
+             
+               >ADD TO BAG</button>
+          <Link to="/home">Home</Link>
             </div>
           </div>
         </div>
       }
+
+      <h3>hello world</h3>
     </>
-  )
+  );
 }
-export  default ProductDetails ;
+export default ProductDetails;

@@ -1,45 +1,26 @@
-import { useReducer } from "react";
-// import { useEffect } from "react"
-// import { NavLink } from "react-router-dom"
 
-const initialState = 0;
-
-const counterReducer = (state, payload) => {
-  const { action, value } = payload;
-  switch (action) {
-    case "addtocart":
-      return state + value;
-    case "removefromcart":
-      return state - value;
-
-    case "reset":
-      return initialState;
-
-    default:
-      return state;
-  }
-};
-
-function AddValue() {
-  const [state, dispatch] = useReducer(counterReducer, initialState);
-  return (
-    <>
-      {state}
-
-      <button onClick={() => dispatch({ action: "removefromcart", value: 1 })}>
-        remove
-      </button>
-      <button onClick={() => dispatch({ action: "reset" })}>reset</button>
-    </>
-  );
-}
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 function Cart() {
+  const { state, dispatch } = useContext(CartContext);
   return (
     <>
-      <AddValue />
+      <h2>Cart List {state.count} </h2>
+      {state.items.map((item) => (
+        <div key={item.id}>
+          {item.title} - {item.qty}- {item.id}
+          <br />
+          <button
+            onClick={() => dispatch({ type: "REMOVE_CART", payload: item })}
+          >
+            Remove Cart
+          </button>
+          <br />
+        </div>
+      ))}
     </>
   );
 }
 
-export default Cart;
+export { Cart as default };
