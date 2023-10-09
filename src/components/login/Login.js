@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useRef } from 'react';
+
+import {Link } from "react-router-dom"
 
 
 function Login() {
@@ -47,7 +48,7 @@ function Login() {
                     <button className="btnguest btn">GUEST USER</button>
                 </div>
                 <p>
-                    Not a member yet?<a href="#">Register</a>
+                    Not a member yet?<Link to="/register">Register</Link>
                 </p>
             </form>
         </div>

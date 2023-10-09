@@ -11,7 +11,7 @@ function Register() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(login);
-    setLogin({ Username: "", password: "", email: "" });
+    setLogin({ username: "", password: "", email: "" });
   }
 
   return (
@@ -23,7 +23,7 @@ function Register() {
           <input
             type="text"
             name="Username"
-            value={login.Username}
+            value={login.username}
             onChange={handleChange}
             required
           />
@@ -53,7 +53,7 @@ function Register() {
           <button className="btnlogin btn">REGISTER</button>
         </div>
         <p>
-          {/* Already a member?<Link to="/">Login</Link> */}
+        
         </p>
       </form>
     </div>

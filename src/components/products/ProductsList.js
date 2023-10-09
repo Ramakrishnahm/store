@@ -31,7 +31,7 @@ function ProductsList() {
             <div>
               <div className="products">
                 <div>
-                  <Link to={"/products/" + product.id}>
+                  <Link to={"/productdetails" + product.id}>
                     <img
                       src={product["attributes"]["image"]}
                       alt="lamp"
