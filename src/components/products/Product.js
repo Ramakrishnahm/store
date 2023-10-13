@@ -8,7 +8,7 @@ function Product() {
         <div>
             <FilterForm />
          <ProductsList />
-         {/* <ProductDetails/>   */}
+          <ProductDetails/>   
         </div>
     )
 }

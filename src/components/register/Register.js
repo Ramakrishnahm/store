@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { Link } from 'react-router-dom';
 
 function Register() {
-  const [login, setLogin] = useState({ Username: "", email: "", password: "", });
+  const [login, setLogin] = useState({ username: "", email: "", password: "" });
   const handleChange = (ev) => {
     const { name, value } = ev && ev.target;
     setLogin((prev) => ({ ...prev, [name]: value }));
@@ -22,7 +22,7 @@ function Register() {
           <label id="name">Username</label> <br />
           <input
             type="text"
-            name="Username"
+            name="username"
             value={login.username}
             onChange={handleChange}
             required
@@ -50,14 +50,14 @@ function Register() {
           />
         </div>
         <div>
-          <button className="btnlogin btn">REGISTER</button>
+          <button type="button" className="btnlogin btn">
+            REGISTER
+          </button>
         </div>
-        <p>
-        
-        </p>
+        <p></p>
       </form>
     </div>
   );
-  }
+}
 
 export default Register;

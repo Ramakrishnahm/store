@@ -1,3 +1,6 @@
+
+
+
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../cart/CartContext";
@@ -5,7 +8,7 @@ const productObj = {
   options: [1, 2, 3, 4, 5],
 };
 function ProductDetails() {
-  const [productDetails, setProductDetails] = useState(null);
+  const [productDetails, setProductDetails] = useState([]);
   const [option] = useState(productObj.options);
 
   const { dispatch } = useContext(CartContext);
@@ -13,19 +16,19 @@ function ProductDetails() {
   useEffect(() => {
     fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
       .then((res) => res.json())
-      .then((res) => setProductDetails(res.data.data));
+      .then((res) => setProductDetails(res.data))
   }, [id]);
 
   return (
     <>
-    
+    {/* {JSON.stringify(productDetails)} */}
       {productDetails && (
         <div className="productDetails">
-          <img
+          {/* <img
             src={productDetails.attributes.image}
             alt="lamp"
-            loading="lazy"
-          />
+
+          /> */}
           <div className="productdetailsdetailscontent">
             <h2>{productDetails.attributes.title}</h2>
             <h4>{productDetails.attributes.company}</h4>
@@ -48,14 +51,16 @@ function ProductDetails() {
               </select>
             </div>
             <div>
-              <button  onClick={() =>
-              dispatch({ type: "ADD_TO_CART", payload: { ...value, qty: 1 } })
-            }>ADD TO BAG</button>
+              <button onClick={() =>
+                dispatch({ type: "ADD_TO_CART", payload: { ...productDetails, qty: 1 } })
+              }>ADD TO BAG</button>
             </div>
           </div>
         </div>
       )}
-    </>
-  );
+
+    </>);
+
 }
+
 export default ProductDetails;

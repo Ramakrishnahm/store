@@ -34,7 +34,7 @@ function Filterform() {
 
 
             <select id="category" onChange={handleChange} name="categories" value={form.categories}>
-              {categories.map((category) => <option>{category}</option>)}
+              {categories.map((category,index) => <option key= {index}>{category}</option>)}
 
             
             
@@ -43,7 +43,7 @@ function Filterform() {
           <div>
             <label>Select Company</label> <br />
             <select id="company" onChange={handleChange} name="company" value={form.company}>
-              {company.map((category) => <option>{category}</option>)}
+              {company.map((category,index) => <option key = {index}>{category}</option>)}
             
             
             </select>
@@ -51,7 +51,7 @@ function Filterform() {
           <div>
             <label>Sort By</label> <br />
             <select id="sort" onChange={handleChange} name="sortby" value={form.sortby} >
-              {sort.map((category) => <option>{category}</option>)
+              {sort.map((category,index) => <option key = {index}>{category}</option>)
 
               }
            

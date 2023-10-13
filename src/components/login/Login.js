@@ -1,58 +1,91 @@
+
+import { Link, useNavigate } from "react-router-dom";
+ import "./style.css";
 import { useState } from "react";
+import axios from "axios";
 
-import {Link } from "react-router-dom"
+export default function Login() {
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-function Login() {
-    const [login, setLogin] = useState({ email: "", password: "" });
-    
-    const handleChange = (ev) => {
-        const { name, value } = ev && ev.target;
-        setLogin((prev) => ({ ...prev, [name]: value }));
-    };
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(login);
-        setLogin({ password: "", email: "" });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(loginForm);
+    if (loginForm.email.length && loginForm.password.length) {
+      tryLogin({ ...loginForm });
     }
+  };
+  const tryLogin = ({ email, password }) => {
+    axios
+      .post("https://strapi-store-server.onrender.com/api/auth/local", {
+        identifier: email,
+        password: password,
+      })
+      .then((res) => {
+        setLoginForm({ email: "", password: "" });
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/");
+      });
+  };
+  const handleGuestLogin = () => {
+    tryLogin({ email: "test@test.com", password: "secret" });
+  };
 
-    return (
-        <div className="login">
-            <h3>Login</h3>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label id="email">Email</label> <br />
-                    <input
-                        type="email"
-                        name="email"
-                        value={login.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label id="password">Password</label> <br />
-                    <input
-                        type="password"
-                        name="password"
-                        value={login.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <button className="btnlogin btn">LOGIN</button>
-                </div>
-                <div>
-                    <button className="btnguest btn">GUEST USER</button>
-                </div>
-                <p>
-                    Not a member yet?<Link to="/register">Register</Link>
-                </p>
-            </form>
-        </div>
-    );
+  return (
+    <div className="login-container ">
+      <div className="form-container">
+        <h2 className="text">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="main">
+            <label htmlFor="email" className="form-text">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              name="email"
+              value={loginForm.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="main">
+            <label htmlFor="exampleInputPassword1" className="form-text">
+              Password:
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={loginForm.password}
+              onChange={handleChange}
+            />
+          </div>
+         
+          <div className="btns">
+            <button type="submit" className="btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              className="btn"
+              onClick={handleGuestLogin}
+            >
+              Guest User
+            </button>
+          </div>
+        </form>
+        <p>
+          Not a member yet? <Link to="/register">Register</Link>
+        </p>
+      </div>
+    </div>
+  );
 }
-
-export default Login;
