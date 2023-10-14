@@ -8,7 +8,7 @@ const productObj = {
   options: [1, 2, 3, 4, 5],
 };
 function ProductDetails() {
-  const [productDetails, setProductDetails] = useState([]);
+  const [productDetails, setProductDetails] = useState();
   const [option] = useState(productObj.options);
 
   const { dispatch } = useContext(CartContext);
@@ -21,14 +21,15 @@ function ProductDetails() {
 
   return (
     <>
-    {/* {JSON.stringify(productDetails)} */}
+   {/* {JSON.stringify(productDetails)} */}
       {productDetails && (
         <div className="productDetails">
-          {/* <img
+          <img
             src={productDetails.attributes.image}
             alt="lamp"
+            className="img"
 
-          /> */}
+          />
           <div className="productdetailsdetailscontent">
             <h2>{productDetails.attributes.title}</h2>
             <h4>{productDetails.attributes.company}</h4>
@@ -52,7 +53,7 @@ function ProductDetails() {
             </div>
             <div>
               <button onClick={() =>
-                dispatch({ type: "ADD_TO_CART", payload: { ...productDetails, qty: 1 } })
+                dispatch({ type: "ADD_ITEM_CART", payload: { ...productDetails, qty: 1 } })
               }>ADD TO BAG</button>
             </div>
           </div>

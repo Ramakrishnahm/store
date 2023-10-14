@@ -23,7 +23,7 @@ export default function Cart() {
   };
 
   const handleCheckOut = () => {
-    // dispatch({ action: "CLEAR_CART" }); // fine
+    dispatch({ action: "CLEAR_CART" }); 
     navigate("/order");
   };
 

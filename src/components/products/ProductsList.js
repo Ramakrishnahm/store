@@ -23,9 +23,9 @@ function ProductsList() {
       </div>
 
       <>
-        {data.map((product, index) => (
-          <div className="products">
-            <Link to={"/productdetails" + product.id} key={index}>
+        {data.map((product) => (
+          <div className="products" key = {product.id}>
+            <Link to={"/product/" + product.id} >
               <img
                 src={product["attributes"]["image"]}
                 alt="lamp"

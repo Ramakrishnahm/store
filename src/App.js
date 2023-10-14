@@ -11,7 +11,7 @@ import Product from "./components/products/Product";
 
 import Cart from "./components/cart/Cart";
 import "./App.css";
-import ProductDetails from "./components/products/ProductDetails";
+ import ProductDetails from "./components/products/ProductDetails";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/home" element={<Home />} /> 
     
          <Route exact path="/products" element={<Product />}/>
-         <Route exact path= "/productdetails/:id" element = {<ProductDetails/>}/>
+         <Route exact path= "/product/:id" element = {<ProductDetails/>}/> 
 
           <Route exact path="/cart" element={<Cart />} /> 
         </Routes>
