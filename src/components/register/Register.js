@@ -1,5 +1,7 @@
 import { useState } from "react";
-// import { Link } from 'react-router-dom';
+
+import axios from 'axios'
+
 
 function Register() {
   const [login, setLogin] = useState({ username: "", email: "", password: "" });
@@ -13,6 +15,24 @@ function Register() {
     console.log(login);
     setLogin({ username: "", password: "", email: "" });
   }
+
+  const tryLogin = ({ email, password, username }) => {
+    axios
+      .post("https://strapi-store-server.onrender.com/api/auth/local/register ", {
+        username:username,
+        identifier: email,
+        password: password,
+      })
+      .then((res) => {
+        setLogin({ email: "", password: "" });
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(email)
+        
+      });
+  };
+  const handleGuestLogin1 = () => {
+    tryLogin({ email: "test@test.com", password: "secret" });
+  };
 
   return (
     <div className="login">
@@ -50,7 +70,7 @@ function Register() {
           />
         </div>
         <div>
-          <button type="button" className="btnlogin btn">
+          <button type="button" className="btnlogin btn" onClick = {handleGuestLogin1}>
             REGISTER
           </button>
         </div>
