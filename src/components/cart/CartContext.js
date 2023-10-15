@@ -7,13 +7,14 @@ CartContext.displayName = "CartContext";
 const initialState = { items: [], totalCount: 0 };
 
 function cartReducer(state, payload) {
-  const { action, value } = payload;
-  switch (action) {
+  const { type, value } = payload;
+  console.log(payload)
+  switch (type) {
     case "ADD_ITEM_CART":
       return {
         ...state,
         items: [...state.items, value],
-        totalCount: state.totalCount + +value.count,
+        totalCount: state.totalCount + +value.qty,
       };
     case "REMOVE_ITEM_CART": {
       let itemFound;
@@ -26,7 +27,7 @@ function cartReducer(state, payload) {
           }
           return true;
         }),
-        totalCount: state.totalCount - itemFound.count,
+        totalCount: state.totalCount - itemFound.qty
       };
     }
     case "UPDATE_ITEM_CART": {
@@ -35,13 +36,13 @@ function cartReducer(state, payload) {
       return {
         ...state,
         items: state.items.map((item) => {
-          if (item.id === value.id) {
+          if (item.id == value.id) {
             prevItemState = item;
-            return { ...item, count: value.count };
+            return { ...item, count: value.qty };
           }
           return item;
         }),
-        totalCount: state.totalCount + +value.count - prevItemState.count,
+        totalCount: state.totalCount + +value.count - prevItemState.qty,
       };
     }
     case "CLEAR_CART":
